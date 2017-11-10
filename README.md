@@ -1,8 +1,8 @@
-# Project 3 - Arcana #
+# Project 3 - Through Rain, Sleet, & Snow #
 IGME 320.03 - Game Design and Development 2
 *****
 
-## Project: Arcana
+## Project: Through Rain, Sleet, & Snow
 Project #3 for the Game Design and Development 2 course. A more detailed version of this document will be updated as progress is made.
 
 ### Description
