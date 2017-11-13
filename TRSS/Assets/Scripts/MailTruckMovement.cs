@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MailTruckMovement : MonoBehaviour {
 
-    float speedForce = 1500f;
-    float steerAngle = 65f;
+    float speedForce = 2000f;
+    float steerAngle = 25f;
     float brakeForce = 1000000f;
 
     public WheelCollider FR_L, FR_R, BK_L, BK_R;
@@ -67,8 +67,8 @@ public class MailTruckMovement : MonoBehaviour {
 
         //Apply the torque force to front wheels
 
-        //FR_L.motorTorque = torqueForce;
-        //FR_R.motorTorque = torqueForce;
+        FR_L.motorTorque = torqueForce;
+        FR_R.motorTorque = torqueForce;
     }
 
     /**
