@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class MailTruckMovement : MonoBehaviour {
 
-    float speedForce = 2000f;
-    float steerAngle = 25f;
-    float brakeForce = 1000000f;
+    float speedForce = 2500f;
+    float steerAngle = 15f;
+    float brakeForce = 100000000f;
 
     public WheelCollider FR_L, FR_R, BK_L, BK_R;
+
+    public Rigidbody car_rb;
+
+    public float MAX_SPEED = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +41,10 @@ public class MailTruckMovement : MonoBehaviour {
         // Apply forward torque to the car.
         if (Input.GetButton("Vertical"))
         {
-            ApplyForwardTorque(forwardForce);
+            
+            
+                ApplyForwardTorque(forwardForce);
+            
         } else
         {
             // If not accelerating, apply the break.
@@ -46,6 +53,8 @@ public class MailTruckMovement : MonoBehaviour {
 
         // Apply the steering angle to the vehicle
         ApplySteeringTorque(steering);
+
+        LimitVelocity();
     }
 
     /**
@@ -96,5 +105,20 @@ public class MailTruckMovement : MonoBehaviour {
     {
         FR_L.steerAngle = steeringAngle;
         FR_R.steerAngle = steeringAngle;
+    }
+
+    void LimitVelocity()
+    {
+        //Debug.Log(car_rb.velocity.magnitude);
+        if (car_rb.velocity.magnitude > MAX_SPEED)
+        {
+            // Add brake torque to rear wheels
+            BK_L.brakeTorque = brakeForce;
+            BK_R.brakeTorque = brakeForce;
+
+            // Add brake torque to front wheels
+            FR_L.brakeTorque = brakeForce;
+            FR_R.brakeTorque = brakeForce;
+        }
     }
 }
