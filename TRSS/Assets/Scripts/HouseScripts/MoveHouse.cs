@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MoveHouse : MonoBehaviour {
+
+    public Text score_text;
+
+    int score = 0;
 
     // Use this for initialization
     void Start()
@@ -31,13 +36,19 @@ public class MoveHouse : MonoBehaviour {
 
     }
 
+    void UpdateScore()
+    {
+        score++;
+        score_text.text = "Deliveries: " + score;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "MailTruck")
         {
 
             ChangePosition();
-
+            UpdateScore();
         }
 
     }
