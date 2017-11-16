@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MoveHouse : MonoBehaviour {
 
     public Text score_text;
+    public TimerUpdate timer;
 
     int score = 0;
 
@@ -42,6 +43,11 @@ public class MoveHouse : MonoBehaviour {
         score_text.text = "Deliveries: " + score;
     }
 
+    void UpdateTimer()
+    {
+        timer.AddSubTime(3);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "MailTruck")
@@ -49,6 +55,7 @@ public class MoveHouse : MonoBehaviour {
 
             ChangePosition();
             UpdateScore();
+            UpdateTimer();
         }
 
     }

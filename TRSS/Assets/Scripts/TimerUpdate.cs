@@ -25,9 +25,17 @@ public class TimerUpdate : MonoBehaviour {
         {
             time -= interpolationPeriod;
 
-            UpdateTimeRemaining();
+           
+
+            time_left -= 1;
+
+            if (time_left == 0)
+            {
+                Application.Quit();
+            }
         }
-	}
+        UpdateTimeRemaining();
+    }
 
     public void AddSubTime(int time)
     {
@@ -37,11 +45,5 @@ public class TimerUpdate : MonoBehaviour {
     void UpdateTimeRemaining()
     {
         gameObject.GetComponent<Text>().text = "Time Remaining: " + time_left;
-        time_left -= 1;
-
-        if(time_left == 0)
-        {
-            Application.Quit();
-        }
     }
 }

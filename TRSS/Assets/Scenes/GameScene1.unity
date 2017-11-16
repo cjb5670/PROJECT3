@@ -871,7 +871,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Time Remaining: 0'
+  m_Text: 'Time Remaining: 60'
 --- !u!222 &550333798
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1500,6 +1500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score_text: {fileID: 281553953}
+  timer: {fileID: 550333799}
 --- !u!54 &1987505697
 Rigidbody:
   m_ObjectHideFlags: 0
