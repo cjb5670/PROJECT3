@@ -32,3 +32,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/TRSS/Temp/UnityVS_obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/TRSS/Temp/UnityVS_obj/Debug/TRSS.csproj.CoreCompileInputs.cache
