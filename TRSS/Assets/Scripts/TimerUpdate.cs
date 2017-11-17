@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimerUpdate : MonoBehaviour {
@@ -31,8 +32,8 @@ public class TimerUpdate : MonoBehaviour {
 
             if (time_left == 0)
             {
-                Application.Quit();
-            }
+				SceneManager.LoadScene(4);
+			}
         }
         UpdateTimeRemaining();
     }
