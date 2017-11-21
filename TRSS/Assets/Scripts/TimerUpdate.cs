@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TimerUpdate : MonoBehaviour {
 
-    int time_left = 10;
+    int time_left = 60;
 
     private float time = 0.0f;
     public float interpolationPeriod = 1f;
