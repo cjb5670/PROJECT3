@@ -5,10 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour {
 
+	public Animator mainMenu;
+	public Animator controlsMenu;
+	public Animator creditsMenu;
+
+	public List<GameObject> Animated;
+
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		mainMenu = Animated[0].GetComponent<Animator>();
+		controlsMenu = Animated[1].GetComponent<Animator>();
+		creditsMenu = Animated[2].GetComponent<Animator>();
+
+		// sets animations to default state
+		foreach (GameObject a in Animated)
+		{
+			Animator anim = a.GetComponent<Animator>();
+			anim.SetFloat("Condition", 0.0f);
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -16,9 +33,16 @@ public class LoadScene : MonoBehaviour {
 		
 	}
 
-	public void LoadMainMenu()
+	public void LoadMainMenuFromCredits()
 	{
-		SceneManager.LoadScene(0);
+		mainMenu.SetFloat("Condition", 2);
+		creditsMenu.SetFloat("Condition", 2);
+	}
+
+	public void LoadMainMenuFromControls()
+	{
+		mainMenu.SetFloat("Condition", 2);
+		controlsMenu.SetFloat("Condition", 2);
 	}
 
 	public void LoadStartGame()
@@ -26,14 +50,16 @@ public class LoadScene : MonoBehaviour {
 		SceneManager.LoadScene(1);
 	}
 
-	public void LoadOptions()
+	public void LoadCredits()
 	{
-		SceneManager.LoadScene(2);
+		mainMenu.SetFloat("Condition", 1);
+		creditsMenu.SetFloat("Condition", 1);
 	}
 
 	public void LoadControls()
 	{
-		SceneManager.LoadScene(3);
+		mainMenu.SetFloat("Condition", 1);
+		controlsMenu.SetFloat("Condition", 1);
 	}
 
 	public void LoadGameOver()
