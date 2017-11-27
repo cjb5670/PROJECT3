@@ -8,7 +8,7 @@ public class ArenaManager : MonoBehaviour {
     int grid_x = 10;
     int grid_y = 10;
 
-    GameObject[][] arena;
+    public GameObject[][] arena;
 
     System.Random rnd = new System.Random();
 
@@ -220,4 +220,5 @@ public class ArenaManager : MonoBehaviour {
         }
 
     }
+
 }
