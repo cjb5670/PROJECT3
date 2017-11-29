@@ -8,9 +8,15 @@ public class ArenaManager : MonoBehaviour {
     int grid_x = 10;
     int grid_y = 10;
 
+    int roads = 0;
+
     GameObject[][] arena;
 
     System.Random rnd = new System.Random();
+
+    private IEnumerator coroutine;
+
+    private int newX, newY;
 
     // Use this for initialization
     void Start () {
@@ -53,11 +59,14 @@ public class ArenaManager : MonoBehaviour {
             startRoadY = 0;
         }
 
+        roads = (int)road_tiles;
         GameObject road = Resources.Load("Road") as GameObject;
         arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 45,.5f, startRoadY * 10 - 45), Quaternion.identity);
 
-        
-        Place_New_Road_Tile(startRoadX, startRoadY, (int)road_tiles);
+        coroutine = Generate_Road(startRoadX, startRoadY);
+
+        StartCoroutine(coroutine);
+        //Place_New_Road_Tile(startRoadX, startRoadY, (int)road_tiles);
 
         //if(startRoadX < .5f)
         //{
@@ -70,17 +79,29 @@ public class ArenaManager : MonoBehaviour {
 		
 	}
 
+    IEnumerator Generate_Road(int startRoadX, int startRoadY)
+    {
+        newX = startRoadX;
+        newY = startRoadY;
+        while(roads >= 0)
+        {
+            yield return null;
+            Place_New_Road_Tile(newX, newY);
+        }
+        StopCoroutine(coroutine);
+    }
+
     /**
      * Recursive method that attepts to create a new road tile. If the
      * random placement fails then it tries again. If the random placement
      * is successful then it creates a new one with one less tile remaining
      * to be created.
      */
-    void Place_New_Road_Tile(int x, int y, int tiles)
+    void Place_New_Road_Tile(int x, int y)
     {
-        if(tiles == 0)
+        if(roads == 0)
         {
-            return;
+            StopCoroutine(coroutine);
         }
 
         int newX, newY;
@@ -173,26 +194,30 @@ public class ArenaManager : MonoBehaviour {
                 break;
         }
 
+        this.newX = newX;
+        this.newY = newY;
+
         if (arena[newX][newY] == null)
         {
            if(RoadDoesntMakeA2x2(newX, newY))
             {
                 GameObject road = Resources.Load("Road") as GameObject;
                 arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 45, .5f, newY * 10 - 45), Quaternion.identity);
-
-                Place_New_Road_Tile(newX, newY, tiles - 1);
-
                 Debug.Log("Placing road at " + newX + " " + newY);
+                roads--;
+
+                
             } else
             {
-                
-                Place_New_Road_Tile(x, y, tiles);
+                //Place_New_Road_Tile(x, y, tiles);
+                //yield return Place_New_Road_Tile(newX, newY, tiles);
             }
             
         }
         else
         {
-            Place_New_Road_Tile(newX, newY, tiles);
+            //Place_New_Road_Tile(newX, newY, tiles);
+            //yield return Place_New_Road_Tile(newX, newY, tiles - 1);
         }
     }
 
