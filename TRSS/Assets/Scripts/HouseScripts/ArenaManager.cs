@@ -8,9 +8,13 @@ public class ArenaManager : MonoBehaviour {
     int grid_x = 10;
     int grid_y = 10;
 
+<<<<<<< HEAD
     int roads = 0;
 
     GameObject[][] arena;
+=======
+    public GameObject[][] arena;
+>>>>>>> 3c43cafa1495a922327c71e0cb9180d2477f57a5
 
     System.Random rnd = new System.Random();
 
@@ -245,4 +249,5 @@ public class ArenaManager : MonoBehaviour {
         }
 
     }
+
 }
