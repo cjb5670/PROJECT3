@@ -52,13 +52,16 @@ public class FollowScript : MonoBehaviour {
     {
         foreach(GameObject lamp in lampPosts)
         {
-            if(lampPost == null)
+            if(lamp != null)
             {
-                lampPost = lamp;
-            }
-            else if((lamp.transform.position - transform.position).magnitude < (lampPost.transform.position - transform.position).magnitude)
-            {
-                lampPost = lamp;
+                if (lampPost == null)
+                {
+                    lampPost = lamp;
+                }
+                else if ((lamp.transform.position - transform.position).magnitude < (lampPost.transform.position - transform.position).magnitude)
+                {
+                    lampPost = lamp;
+                }
             }
         }
     }

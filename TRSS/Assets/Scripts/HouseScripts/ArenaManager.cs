@@ -214,12 +214,29 @@ public class ArenaManager : MonoBehaviour {
         {
            if(RoadDoesntMakeA2x2(newX, newY))
             {
-                GameObject road = Resources.Load("RoadBenchMailbox") as GameObject;
-                arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
-                Debug.Log("Placing road at " + newX + " " + newY);
-                lampPosts[roads] = arena[newX][newY];
-                roads--;
+                int road_type = rnd.Next(0, 3);
+                GameObject road;
+                switch (road_type)
+                {
+                    case 0:
+                        road = Resources.Load("Road") as GameObject;
+                        break;
+                    case 1:
+                        road = Resources.Load("RoadBenchMailbox") as GameObject;
+                        break;
+                    case 2:
+                        road = Resources.Load("RoadLamp1") as GameObject;
+                        break;
+                    default:
+                        road = Resources.Load("Road") as GameObject;
+                        break;
+                }
 
+                arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
+                if(road_type == 2)
+                    lampPosts[roads] = arena[newX][newY];
+                Debug.Log("Placing road at " + newX + " " + newY);
+                roads--;
                 
             } else
             {
