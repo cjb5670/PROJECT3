@@ -8,13 +8,9 @@ public class ArenaManager : MonoBehaviour {
     int grid_x = 10;
     int grid_y = 10;
 
-<<<<<<< HEAD
     int roads = 0;
 
-    GameObject[][] arena;
-=======
     public GameObject[][] arena;
->>>>>>> 3c43cafa1495a922327c71e0cb9180d2477f57a5
 
     System.Random rnd = new System.Random();
 
@@ -67,9 +63,10 @@ public class ArenaManager : MonoBehaviour {
         GameObject road = Resources.Load("Road") as GameObject;
         arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 45,.5f, startRoadY * 10 - 45), Quaternion.identity);
 
-        coroutine = Generate_Road(startRoadX, startRoadY);
+        //coroutine = Generate_Road(startRoadX, startRoadY);
 
-        StartCoroutine(coroutine);
+        //StartCoroutine(coroutine);
+        Generate_Road_nonAsync(startRoadX, startRoadY);
         //Place_New_Road_Tile(startRoadX, startRoadY, (int)road_tiles);
 
         //if(startRoadX < .5f)
@@ -95,6 +92,16 @@ public class ArenaManager : MonoBehaviour {
         StopCoroutine(coroutine);
     }
 
+    void Generate_Road_nonAsync(int startRoadX, int startRoadY)
+    {
+        newX = startRoadX;
+        newY = startRoadY;
+        while (roads >= 0)
+        {
+            Place_New_Road_Tile(newX, newY);
+        }
+    }
+
     /**
      * Recursive method that attepts to create a new road tile. If the
      * random placement fails then it tries again. If the random placement
@@ -105,7 +112,7 @@ public class ArenaManager : MonoBehaviour {
     {
         if(roads == 0)
         {
-            StopCoroutine(coroutine);
+            //StopCoroutine(coroutine);
         }
 
         int newX, newY;
