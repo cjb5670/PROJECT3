@@ -1392,6 +1392,12 @@ Prefab:
       propertyPath: aManager
       value: 
       objectReference: {fileID: 388659018}
+    - target: {fileID: 114962358211037344, guid: 183cb7fd4516c2b48a568e05786d8148,
+        type: 2}
+      propertyPath: house
+      value: 
+      objectReference: {fileID: 1578686804369922, guid: 183cb7fd4516c2b48a568e05786d8148,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 183cb7fd4516c2b48a568e05786d8148, type: 2}
   m_IsPrefabParent: 0
