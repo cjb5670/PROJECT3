@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour {
 
     private GameObject[] lampPosts;
 
-    public int EnemyCount = 10;
+    public int EnemyCount = 100;
 
     GameObject[] enemies;
 
@@ -29,13 +29,18 @@ public class EnemyManager : MonoBehaviour {
 
     public void Initialize()
     {
-        enemies = new GameObject[EnemyCount];
+        enemies = new GameObject[lampPosts.Length];
 
-        for (int i = 0; i < EnemyCount; i++)
+        int j = 0;
+        for(int i = 0; i < lampPosts.Length; i++)
         {
-            GameObject enemy = Resources.Load("Enemy") as GameObject;
-            enemies[i] = (GameObject)Instantiate(enemy, new Vector3(dist * i, .0f, dist), Quaternion.identity);
-            enemies[i].GetComponent<FollowScript>().SetLampPosts(lampPosts);
+            if(lampPosts[i] != null)
+            {
+                GameObject enemy = Resources.Load("Enemy") as GameObject;
+                enemies[j] = (GameObject)Instantiate(enemy, new Vector3(lampPosts[i].transform.position.x, .5f, lampPosts[i].transform.position.z), Quaternion.identity);
+                enemies[j].GetComponent<FollowScript>().SetLampPosts(lampPosts);
+                j++;
+            }
         }
     }
 }
