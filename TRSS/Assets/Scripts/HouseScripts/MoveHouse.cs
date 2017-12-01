@@ -13,9 +13,6 @@ namespace TRSS
 
         int score = 0;
 
-        public ArenaManager aManager;
-        GameObject[][] gObjs;
-
         // Use this for initialization
         void Start()
         {
@@ -24,40 +21,10 @@ namespace TRSS
 
         }
 
-        void ChangePosition()
+        void DeleteHouse()
         {
 
-            //ground size is 100:100 )||( house size is 5:5
-
-            for (int x = 0; x < gObjs.Length; x++)
-            {
-
-                for (int y = 0; y < gObjs[x].Length; y++)
-                {
-
-                    if (gObjs[x][y] == null)
-                    {
-
-
-
-                    }
-
-                }
-
-            }
-
-            /*Vector3 newPosition;
-            float newX;
-            float newZ;
-
-            newX = Random.Range(0, 95);
-            newZ = Random.Range(0, 95);
-
-            newX -= 45;
-            newZ -= 45;
-
-            newPosition = new Vector3(newX, transform.position.y, newZ);
-            transform.position = newPosition;*/
+            Destroy(gameObject);
 
         }
 
@@ -77,7 +44,7 @@ namespace TRSS
             if (other.gameObject.name == "MailTruck")
             {
 
-                ChangePosition();
+                DeleteHouse();
                 UpdateScore();
                 UpdateTimer();
             }
@@ -88,11 +55,7 @@ namespace TRSS
         void Update()
         {
 
-            if (aManager != null && gObjs == null && aManager.arena != null) {
 
-                gObjs = aManager.arena;
-
-            }
 
         }
     }
