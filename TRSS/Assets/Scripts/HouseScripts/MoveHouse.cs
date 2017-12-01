@@ -24,11 +24,13 @@ namespace TRSS
 
         }
 
-        void ChangePosition()
+        void DestroyHouses()
         {
 
-            //ground size is 100:100 )||( house size is 5:5
+            Destroy(gameObject);
 
+            //ground size is 100:100 )||( house size is 5:5
+            /*
             int rand;
 
             for (int x = 0; x < gObjs.Length; x++)
@@ -52,6 +54,7 @@ namespace TRSS
                 }
 
             }
+            */
 
         }
 
@@ -70,7 +73,7 @@ namespace TRSS
         {
             if (other.gameObject.name == "MailTruck")
             {
-                ChangePosition();
+                DestroyHouses();
                 UpdateScore();
                 UpdateTimer();
             }
