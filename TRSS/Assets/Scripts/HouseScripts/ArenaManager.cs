@@ -12,6 +12,8 @@ public class ArenaManager : MonoBehaviour {
 
     public GameObject[][] arena;
 
+    public GameObject[] lampPosts;
+
     System.Random rnd = new System.Random();
 
     private IEnumerator coroutine;
@@ -20,6 +22,7 @@ public class ArenaManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
         arena = new GameObject[grid_x][];
         for (int x = 0; x < grid_x; x++)
         {
@@ -61,6 +64,7 @@ public class ArenaManager : MonoBehaviour {
         }
 
         roads = (int)road_tiles;
+        lampPosts = new GameObject[roads + 1];
         GameObject road = Resources.Load("Road") as GameObject;
         arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 70,.5f, startRoadY * 10 - 45), Quaternion.identity);
 
@@ -68,12 +72,9 @@ public class ArenaManager : MonoBehaviour {
 
         //StartCoroutine(coroutine);
         Generate_Road_nonAsync(startRoadX, startRoadY);
-        //Place_New_Road_Tile(startRoadX, startRoadY, (int)road_tiles);
 
-        //if(startRoadX < .5f)
-        //{
-        //    //x = 0;
-        //}
+        GameObject.Find("EnemyManager").GetComponent<EnemyManager>().SetLampPostArray(lampPosts);
+        GameObject.Find("EnemyManager").GetComponent<EnemyManager>().Initialize();
     }
 
     // Update is called once per frame
@@ -216,6 +217,7 @@ public class ArenaManager : MonoBehaviour {
                 GameObject road = Resources.Load("RoadBenchMailbox") as GameObject;
                 arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
                 Debug.Log("Placing road at " + newX + " " + newY);
+                lampPosts[roads] = arena[newX][newY];
                 roads--;
 
                 
