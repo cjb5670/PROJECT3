@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ArenaManager : MonoBehaviour {
 
-    int grid_x = 10;
+    int grid_x = 15;
     int grid_y = 10;
 
     int roads = 0;
@@ -26,12 +26,13 @@ public class ArenaManager : MonoBehaviour {
             arena[x] = new GameObject[grid_y];
             for(int y = 0; y < grid_y; y++)
             {
-                    //GameObject road = Resources.Load("Road") as GameObject;
-                    //arena[x][y] = (GameObject)Instantiate(road, new Vector3(x * 10 - 45,.5f, y * 10 - 45), Quaternion.identity);
+                    GameObject ground = Resources.Load("Grass") as GameObject;
+                    ground = (GameObject)Instantiate(ground, new Vector3(x * 10 - 70, .0f, y * 10 - 45), Quaternion.identity);
+                //arena[x][y] = (GameObject)Instantiate(road, new Vector3(x * 10 - 45,.5f, y * 10 - 45), Quaternion.identity);
             }
         }
 
-        float road_tiles = grid_x * grid_y * .5f;
+        float road_tiles = grid_x * grid_y * .6f;
 
         // 0 = North, 1 = East, 2 = South, 3 = West
         float start_edge = UnityEngine.Random.Range(0, 4);
@@ -61,7 +62,7 @@ public class ArenaManager : MonoBehaviour {
 
         roads = (int)road_tiles;
         GameObject road = Resources.Load("Road") as GameObject;
-        arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 45,.5f, startRoadY * 10 - 45), Quaternion.identity);
+        arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 70,.5f, startRoadY * 10 - 45), Quaternion.identity);
 
         //coroutine = Generate_Road(startRoadX, startRoadY);
 
@@ -212,8 +213,8 @@ public class ArenaManager : MonoBehaviour {
         {
            if(RoadDoesntMakeA2x2(newX, newY))
             {
-                GameObject road = Resources.Load("Road") as GameObject;
-                arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 45, .5f, newY * 10 - 45), Quaternion.identity);
+                GameObject road = Resources.Load("RoadBenchMailbox") as GameObject;
+                arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
                 Debug.Log("Placing road at " + newX + " " + newY);
                 roads--;
 
