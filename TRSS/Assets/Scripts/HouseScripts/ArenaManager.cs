@@ -102,6 +102,8 @@ public class ArenaManager : MonoBehaviour {
         {
             Place_New_Road_Tile(newX, newY);
         }
+
+        CreateRoads();
     }
 
     /**
@@ -232,9 +234,9 @@ public class ArenaManager : MonoBehaviour {
                         break;
                 }
 
-                arena[newX][newY] = (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
-                if(road_type == 2)
-                    lampPosts[roads] = arena[newX][newY];
+                arena[newX][newY] = new GameObject(); // (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
+                //if(road_type == 2)
+                //    lampPosts[roads] = arena[newX][newY];
                 Debug.Log("Placing road at " + newX + " " + newY);
                 roads--;
                 
@@ -275,6 +277,149 @@ public class ArenaManager : MonoBehaviour {
             return true;
         }
 
+    }
+
+    void CreateRoads()
+    {
+        int lamps_count = 0;
+
+        for(int i = 0; i < arena.Length; i++)
+        {
+            for (int j = 0; j < arena[i].Length; j++)
+            {
+                if(arena[i][j] != null)
+                {
+                    String directions = GetDirections(i, j);
+                    GameObject road = null;
+                    switch (directions)
+                    {
+                        case "N":
+                            road = Resources.Load("RoadS") as GameObject;
+                            
+                            
+                            break;
+                        case "E":
+                            road = Resources.Load("RoadE") as GameObject;
+                            
+                            break;
+                        case "S":
+                            road = Resources.Load("RoadN") as GameObject;
+                            break;
+                        case "W":
+                            road = Resources.Load("RoadW") as GameObject;
+                            break;
+                        case "NE":
+                            road = Resources.Load("RoadNE") as GameObject;
+                            break;
+                        case "NS":
+                            int lamp = rnd.Next(0, 2);
+                            if(lamp == 0)
+                            {
+                                road = Resources.Load("RoadNS") as GameObject;
+                            } else
+                            {
+                                road = Resources.Load("Road2NS") as GameObject;
+                                arena[i][j] = (GameObject)Instantiate(road, new Vector3(i * 10 - 70, 0, j * 10 - 45), road.transform.rotation);
+                                lampPosts[lamps_count] = arena[i][j];
+                                road = null;
+                                lamps_count++;
+                            }
+                            
+                            break;
+                        case "NW":
+                            road = Resources.Load("RoadNW") as GameObject;
+                            break;
+                        case "ES":
+                            road = Resources.Load("RoadES") as GameObject;
+                            break;
+                        case "EW":
+                            lamp = rnd.Next(0, 3);
+                            if (lamp == 0)
+                            {
+                                road = Resources.Load("RoadEW") as GameObject;
+                            }
+                            else
+                            {
+                                road = Resources.Load("Road2EW") as GameObject;
+                                arena[i][j] = (GameObject)Instantiate(road, new Vector3(i * 10 - 70, 0, j * 10 - 45), road.transform.rotation);
+                                lampPosts[lamps_count] = arena[i][j];
+                                road = null;
+                                lamps_count++;
+                            }
+                            break;
+                        case "SW":
+                            road = Resources.Load("RoadSW") as GameObject;
+                            break;
+                        case "ESW":
+                            road = Resources.Load("RoadESW") as GameObject;
+                            break;
+                        case "NES":
+                            road = Resources.Load("RoadNES") as GameObject;
+                            break;
+                        case "NEW":
+                            road = Resources.Load("RoadNEW") as GameObject;
+                            break;
+                        case "NSW":
+                            road = Resources.Load("RoadNSW") as GameObject;
+                            break;
+                        case "NESW":
+                            road = Resources.Load("RoadNESW") as GameObject;
+                            break;
+                        default:
+                            break;
+                    }
+                    if(road != null)
+                        arena[i][j] = (GameObject)Instantiate(road, new Vector3(i * 10 - 70, 0, j * 10 - 45), road.transform.rotation);
+                }
+            }
+        }
+
+        //int road_type = rnd.Next(0, 3);
+        //GameObject road;
+        //switch (road_type)
+        //{
+        //    case 0:
+        //        road = Resources.Load("Road") as GameObject;
+        //        break;
+        //    case 1:
+        //        road = Resources.Load("RoadBenchMailbox") as GameObject;
+        //        break;
+        //    case 2:
+        //        road = Resources.Load("RoadLamp1") as GameObject;
+        //        break;
+        //    default:
+        //        road = Resources.Load("Road") as GameObject;
+        //        break;
+        //}
+
+        //arena[newX][newY] = new GameObject(); // (GameObject)Instantiate(road, new Vector3(newX * 10 - 70, .5f, newY * 10 - 45), Quaternion.identity);
+        //if (road_type == 2)
+        //    lampPosts[roads] = arena[newX][newY];
+        //Debug.Log("Placing road at " + newX + " " + newY);
+       
+    }
+
+    String GetDirections(int x, int y)
+    {
+        String directions = "";
+        if( y < grid_y-1 && arena[x][y+1] != null) 
+        {
+            directions += "N";
+        }
+        if( x < grid_x-1 && arena[x+1][y] != null)
+        {
+            directions += "E";
+        }
+        if(y > 0 && arena[x][y-1] != null)
+        {
+            directions += "S";
+        }
+        if(x > 0 && arena[x-1][y] != null)
+        {
+            directions += "W";
+        }
+
+        return directions;
     }
 
 }

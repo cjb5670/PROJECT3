@@ -30,6 +30,7 @@ public class FollowScript : MonoBehaviour {
         {
             searchNewTarget = false;
             transform.LookAt(mailTruck.transform.position);
+            //transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
             transform.Translate(Vector3.forward * speed);
         }
         else if(keepMoving)
