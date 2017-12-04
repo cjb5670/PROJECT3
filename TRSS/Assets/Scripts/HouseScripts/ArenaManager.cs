@@ -65,15 +65,17 @@ public class ArenaManager : MonoBehaviour {
 
         roads = (int)road_tiles;
         lampPosts = new GameObject[roads + 1];
-        GameObject road = Resources.Load("Road") as GameObject;
-        arena[startRoadX][startRoadY] = (GameObject)Instantiate(road, new Vector3(startRoadX * 10 - 70,.5f, startRoadY * 10 - 45), Quaternion.identity);
-
+        GameObject mailtruck = Resources.Load("MailTruck") as GameObject;
+        GameObject mailTruck_prefab = (GameObject)Instantiate(mailtruck, new Vector3(startRoadX * 10 - 70, .5f, startRoadY * 10 - 45), Quaternion.identity);
+        GameObject.Find("Main Camera").GetComponent<CameraFollow>().SetTarget(mailTruck_prefab);
+        mailTruck_prefab.GetComponent<Health>().health = GameObject.Find("Foreground").GetComponent<RectTransform>();
         //coroutine = Generate_Road(startRoadX, startRoadY);
 
         //StartCoroutine(coroutine);
         Generate_Road_nonAsync(startRoadX, startRoadY);
 
         GameObject.Find("EnemyManager").GetComponent<EnemyManager>().SetLampPostArray(lampPosts);
+        GameObject.Find("EnemyManager").GetComponent<EnemyManager>().mailtruck = mailTruck_prefab;
         GameObject.Find("EnemyManager").GetComponent<EnemyManager>().Initialize();
     }
 

@@ -16,8 +16,8 @@ namespace TRSS
         // Use this for initialization
         void Start()
         {
-
-
+            score_text = GameObject.Find("Score").GetComponent<Text>();
+            timer = GameObject.Find("Timer").GetComponent<TimerUpdate>();
 
         }
 
@@ -41,7 +41,7 @@ namespace TRSS
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.name == "MailTruck")
+            if (other.gameObject.name == "MailTruck(Clone)")
             {
 
                 DeleteHouse();

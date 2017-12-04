@@ -10,6 +10,8 @@ public class EnemyManager : MonoBehaviour {
 
     GameObject[] enemies;
 
+    public GameObject mailtruck = null;
+
     int dist = 10;
 
     // Use this for initialization
@@ -39,6 +41,7 @@ public class EnemyManager : MonoBehaviour {
                 GameObject enemy = Resources.Load("Enemy") as GameObject;
                 enemies[j] = (GameObject)Instantiate(enemy, new Vector3(lampPosts[i].transform.position.x, .1f, lampPosts[i].transform.position.z), Quaternion.identity);
                 enemies[j].GetComponent<FollowScript>().SetLampPosts(lampPosts);
+                enemies[j].GetComponent<FollowScript>().SetInitialTarget(this.mailtruck);
                 j++;
             }
         }
