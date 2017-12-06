@@ -55,15 +55,17 @@ namespace TRSS
 
         }
 
-        void SelectNewDelivery()
+        public void SelectNewDelivery()
         {
             int randomHouse = Random.Range(0, maxHouseCount);
             while(houses[randomHouse] == null)
             {
                 randomHouse = Random.Range(0, maxHouseCount);
             }
+
+            Debugger.Print("New House Set");
             houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
-            houses[randomHouse] = null;
+            //houses[randomHouse] = null;
         }
 
         // Update is called once per frame
