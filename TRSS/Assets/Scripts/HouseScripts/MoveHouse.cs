@@ -8,6 +8,8 @@ namespace TRSS
     public class MoveHouse : MonoBehaviour
     {
 
+        public bool target;
+
         public Text score_text;
         public TimerUpdate timer;
 
@@ -18,7 +20,7 @@ namespace TRSS
         {
             score_text = GameObject.Find("Score").GetComponent<Text>();
             timer = GameObject.Find("Timer").GetComponent<TimerUpdate>();
-
+            target = false;
         }
 
         void DeleteHouse()
@@ -42,13 +44,17 @@ namespace TRSS
         public void SetActiveHouse()
         {
 
+            target = true;
+            Renderer rend = GetComponent<Renderer>();
+            rend.material.shader = Shader.Find("Specular");
+            //rend.material.SetColor("_Target", Color.red);
+
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.name == "MailTruck(Clone)")
             {
-
                 DeleteHouse();
                 UpdateScore();
                 UpdateTimer();

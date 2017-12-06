@@ -72,12 +72,15 @@ namespace TRSS
 
             if (aManager != null & gObjs == null && aManager.arena != null) {
 
+                houses = new GameObject[maxHouseCount];
+
                 gObjs = aManager.arena;
                 this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
-                
-                houses = new GameObject[maxHouseCount];
+
+                SelectNewDelivery();
+
             }
 
         }
