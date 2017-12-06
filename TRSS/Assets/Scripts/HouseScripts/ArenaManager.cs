@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ArenaManager : MonoBehaviour {
 
-    int grid_x = 15;
-    int grid_y = 10;
+    public int grid_x = 15;
+    public int grid_y = 10;
 
     int roads = 0;
 

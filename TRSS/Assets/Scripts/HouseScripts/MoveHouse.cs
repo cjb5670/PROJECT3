@@ -39,6 +39,11 @@ namespace TRSS
             timer.AddSubTime(3);
         }
 
+        public void SetActiveHouse()
+        {
+
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.name == "MailTruck(Clone)")
