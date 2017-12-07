@@ -24,6 +24,7 @@ namespace TRSS
             score_text = GameObject.Find("Score").GetComponent<Text>();
             timer = GameObject.Find("Timer").GetComponent<TimerUpdate>();
             target = false;
+            //aManager = GameObject.Find("ArenaManager");
             cHouse = aManager.GetComponent<CreateHouses>();
         }
 
