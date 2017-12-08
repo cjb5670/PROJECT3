@@ -8,7 +8,7 @@ namespace TRSS
     public class MoveHouse : MonoBehaviour
     {
 
-        public bool target;
+        public bool target = false;
 
         public Text score_text;
         public TimerUpdate timer;
@@ -23,8 +23,7 @@ namespace TRSS
         {
             score_text = GameObject.Find("Score").GetComponent<Text>();
             timer = GameObject.Find("Timer").GetComponent<TimerUpdate>();
-            target = false;
-            //aManager = GameObject.Find("ArenaManager");
+            aManager = Object.FindObjectOfType<ArenaManager>();
             cHouse = aManager.GetComponent<CreateHouses>();
         }
 
@@ -49,7 +48,7 @@ namespace TRSS
         public void SetActiveHouse()
         {
 
-            this.target = true;
+            target = true;
             Debug.Log(target);
             Renderer rend = GetComponent<Renderer>();
             rend.material.shader = Shader.Find("Specular");
@@ -64,6 +63,8 @@ namespace TRSS
                 DeleteHouse();
                 if (target == true)
                 {
+                    Debug.Log("Reached");
+
                     UpdateScore();
 
                     cHouse.SelectNewDelivery();

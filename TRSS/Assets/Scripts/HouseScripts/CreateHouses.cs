@@ -53,6 +53,10 @@ namespace TRSS
 
             }
 
+            Debug.Log("Called");
+
+            SelectNewDelivery();
+
         }
 
         public void SelectNewDelivery()
@@ -80,8 +84,6 @@ namespace TRSS
                 this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
-
-                SelectNewDelivery();
 
             }
 
