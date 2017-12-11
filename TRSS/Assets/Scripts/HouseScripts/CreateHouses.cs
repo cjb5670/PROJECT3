@@ -15,6 +15,8 @@ namespace TRSS
 
         public GameObject house;
         int maxHouseCount;
+        int currentHouse = 0;
+        public int score = 0;
 
         // Use this for initialization
         void Start()
@@ -66,9 +68,10 @@ namespace TRSS
             {
                 randomHouse = Random.Range(0, maxHouseCount);
             }
-
+            this.currentHouse = randomHouse;
             Debugger.Print("New House Set");
             houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
+            
             //houses[randomHouse] = null;
         }
 
@@ -87,6 +90,10 @@ namespace TRSS
 
             }
 
+            if(houses[currentHouse] == null)
+            {
+                SelectNewDelivery();
+            }
         }
     }
 }

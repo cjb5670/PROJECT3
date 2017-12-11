@@ -16,7 +16,7 @@ namespace TRSS
         public ArenaManager aManager;
         public CreateHouses cHouse;
 
-        int score = 0;
+        
 
         // Use this for initialization
         void Start()
@@ -36,13 +36,13 @@ namespace TRSS
 
         void UpdateScore()
         {
-            score++;
-            score_text.text = "Deliveries: " + score;
+            cHouse.score++;
+            score_text.text = "Deliveries: " + cHouse.score;
         }
 
         void UpdateTimer()
         {
-            timer.AddSubTime(3);
+            timer.AddSubTime(7);
         }
 
         public void SetActiveHouse()
@@ -51,7 +51,8 @@ namespace TRSS
             target = true;
             Debug.Log(target);
             Renderer rend = GetComponent<Renderer>();
-            rend.material.shader = Shader.Find("Specular");
+            //rend.material.shader = Shader.Find("Specular");
+            gameObject.GetComponentInChildren<ParticleSystem>().enableEmission = true;
             //rend.material.SetColor("_Target", Color.red);
 
         }
@@ -60,16 +61,19 @@ namespace TRSS
         {
             if (other.gameObject.name == "MailTruck(Clone)")
             {
-                DeleteHouse();
+                
                 if (target == true)
                 {
+                    
                     Debug.Log("Reached");
 
                     UpdateScore();
-
-                    cHouse.SelectNewDelivery();
+                    UpdateTimer();
+                    
+                    other.gameObject.GetComponent<Health>().ApplyDamage(-10);
+                    DeleteHouse();
                 }
-                UpdateTimer();
+                
 
             }
 
