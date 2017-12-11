@@ -84,7 +84,7 @@ namespace TRSS
                 houses = new GameObject[maxHouseCount];
 
                 gObjs = aManager.arena;
-                this.maxHouseCount = 1;//aManager.grid_x * aManager.grid_y / 2;
+                this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
 
