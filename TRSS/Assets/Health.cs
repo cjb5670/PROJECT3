@@ -7,7 +7,7 @@ public class Health : MonoBehaviour {
 
     public RectTransform health;
 
-    public int mailtruck_health = 100;
+    public int mailtruck_health = 1000;
 
 	// Use this for initialization
 	void Start () {

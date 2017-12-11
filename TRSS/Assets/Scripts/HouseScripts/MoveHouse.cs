@@ -8,7 +8,7 @@ namespace TRSS
     public class MoveHouse : MonoBehaviour
     {
 
-        public bool target;
+        public bool target = false;
 
         public Text score_text;
         public TimerUpdate timer;
@@ -16,14 +16,14 @@ namespace TRSS
         public ArenaManager aManager;
         public CreateHouses cHouse;
 
-        int score = 0;
+        
 
         // Use this for initialization
         void Start()
         {
             score_text = GameObject.Find("Score").GetComponent<Text>();
             timer = GameObject.Find("Timer").GetComponent<TimerUpdate>();
-            target = false;
+            aManager = Object.FindObjectOfType<ArenaManager>();
             cHouse = aManager.GetComponent<CreateHouses>();
         }
 
@@ -36,22 +36,23 @@ namespace TRSS
 
         void UpdateScore()
         {
-            score++;
-            score_text.text = "Deliveries: " + score;
+            cHouse.score++;
+            score_text.text = "Deliveries: " + cHouse.score;
         }
 
         void UpdateTimer()
         {
-            timer.AddSubTime(3);
+            timer.AddSubTime(7);
         }
 
         public void SetActiveHouse()
         {
 
-            this.target = true;
+            target = true;
             Debug.Log(target);
             Renderer rend = GetComponent<Renderer>();
-            rend.material.shader = Shader.Find("Specular");
+            //rend.material.shader = Shader.Find("Specular");
+            gameObject.GetComponentInChildren<ParticleSystem>().enableEmission = true;
             //rend.material.SetColor("_Target", Color.red);
 
         }
@@ -60,14 +61,18 @@ namespace TRSS
         {
             if (other.gameObject.name == "MailTruck(Clone)")
             {
-                DeleteHouse();
+                
                 if (target == true)
-                {
-                    UpdateScore();
+                {                    
+                    Debug.Log("Reached");
 
-                    cHouse.SelectNewDelivery();
+                    UpdateScore();
+                    UpdateTimer();
+                    
+                    other.gameObject.GetComponent<Health>().ApplyDamage(-10);
+                    DeleteHouse();
                 }
-                UpdateTimer();
+                
 
             }
 

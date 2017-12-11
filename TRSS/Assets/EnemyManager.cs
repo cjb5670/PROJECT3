@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour {
 
     public GameObject mailtruck = null;
 
-    int dist = 10;
+    int dist = 7;
 
     // Use this for initialization
     void Start () {
