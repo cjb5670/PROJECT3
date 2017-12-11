@@ -63,8 +63,7 @@ namespace TRSS
             {
                 
                 if (target == true)
-                {
-                    
+                {                    
                     Debug.Log("Reached");
 
                     UpdateScore();

@@ -28,7 +28,6 @@ namespace TRSS
 
         void Populate()
         {
-
             int rand;
             int index = 0;
             houses = new GameObject[maxHouseCount];
@@ -63,16 +62,17 @@ namespace TRSS
 
         public void SelectNewDelivery()
         {
-            int randomHouse = Random.Range(0, maxHouseCount);
-            while(houses[randomHouse] == null)
-            {
-                randomHouse = Random.Range(0, maxHouseCount);
+
+            if (houses.Length != 0) {
+                int randomHouse = Random.Range(0, maxHouseCount);
+                while (houses[randomHouse] == null)
+                {
+                    randomHouse = Random.Range(0, maxHouseCount);
+                }
+                this.currentHouse = randomHouse;
+                Debugger.Print("New House Set");
+                houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
             }
-            this.currentHouse = randomHouse;
-            Debugger.Print("New House Set");
-            houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
-            
-            //houses[randomHouse] = null;
         }
 
         // Update is called once per frame
@@ -84,13 +84,13 @@ namespace TRSS
                 houses = new GameObject[maxHouseCount];
 
                 gObjs = aManager.arena;
-                this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
+                this.maxHouseCount = 1;//aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
 
             }
 
-            if(houses[currentHouse] == null)
+            if(houses[currentHouse] == null && houses.Length > 0 && houses != null)
             {
                 SelectNewDelivery();
             }
