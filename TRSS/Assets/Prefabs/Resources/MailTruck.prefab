@@ -452,7 +452,7 @@ MonoBehaviour:
   BK_L: {fileID: 146672498499179694}
   BK_R: {fileID: 146362370021203176}
   car_rb: {fileID: 54652759894314050}
-  MAX_SPEED: 15
+  MAX_SPEED: 20
 --- !u!114 &114365570477088342
 MonoBehaviour:
   m_ObjectHideFlags: 1
