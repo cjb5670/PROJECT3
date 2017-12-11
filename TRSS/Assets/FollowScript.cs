@@ -19,33 +19,35 @@ public class FollowScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        mailTruck = GameObject.Find("MailTruck");
+        //mailTruck = GameObject.Find("MailTruck");
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        if(keepMoving && (mailTruck.transform.position - transform.position).magnitude > 1 && (mailTruck.transform.position - transform.position).magnitude < range)
+        if(mailTruck != null)
         {
-            searchNewTarget = false;
-            transform.LookAt(mailTruck.transform.position);
-            transform.Translate(Vector3.forward * speed);
-        }
-        else if(keepMoving)
-        {
-            if(!searchNewTarget)
+            if (keepMoving && (mailTruck.transform.position - transform.position).magnitude > 1 && (mailTruck.transform.position - transform.position).magnitude < range)
             {
-                SelectNewTarget();
-                searchNewTarget = true;
-            }
-            if((lampPost.transform.position - transform.position).magnitude > 1)
-            {
-                transform.LookAt(lampPost.transform.position);
+                searchNewTarget = false;
+                transform.LookAt(mailTruck.transform.position);
+                //transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
                 transform.Translate(Vector3.forward * speed);
             }
+            else if (keepMoving)
+            {
+                if (!searchNewTarget)
+                {
+                    SelectNewTarget();
+                    searchNewTarget = true;
+                }
+                if ((lampPost.transform.position - transform.position).magnitude > 1)
+                {
+                    transform.LookAt(lampPost.transform.position);
+                    transform.Translate(Vector3.forward * speed);
+                }
+            }
         }
-		
 	}
 
     public void SelectNewTarget()
@@ -75,7 +77,7 @@ public class FollowScript : MonoBehaviour {
 
     private void OnTriggerStay(Collider col)
     {
-        if(col.gameObject.name == "MailTruck")
+        if(col.gameObject.name == "MailTruck(Clone)")
         {
             //keepMoving = false;
             if(damageCO == null)
@@ -89,7 +91,7 @@ public class FollowScript : MonoBehaviour {
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.name == "MailTruck")
+        if (col.gameObject.name == "MailTruck(Clone)")
         {
             if(damageCO != null)
             {
@@ -108,5 +110,10 @@ public class FollowScript : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }
         //keepMoving = true;
+    }
+
+    public void SetInitialTarget(GameObject mailtruck)
+    {
+        this.mailTruck = mailtruck;
     }
 }

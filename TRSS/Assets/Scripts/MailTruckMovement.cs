@@ -5,7 +5,7 @@ using UnityEngine;
 public class MailTruckMovement : MonoBehaviour {
 
     float speedForce = 2500f;
-    float steerAngle = 15f;
+    float steerAngle = 45f;
     float brakeForce = 5000f;
 
     public WheelCollider FR_L, FR_R, BK_L, BK_R;
