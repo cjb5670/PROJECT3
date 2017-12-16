@@ -37,6 +37,7 @@ namespace TRSS
         void UpdateScore()
         {
             cHouse.score++;
+            ScoreCounter.Score = cHouse.score;
             score_text.text = "Deliveries: " + cHouse.score;
         }
 

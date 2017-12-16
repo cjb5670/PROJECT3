@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TRSS
 {
@@ -72,6 +73,10 @@ namespace TRSS
                 this.currentHouse = randomHouse;
                 Debugger.Print("New House Set");
                 houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
+            }
+            else
+            {
+                SceneManager.LoadScene(6);
             }
         }
 
