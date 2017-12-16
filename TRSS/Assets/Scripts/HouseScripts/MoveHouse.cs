@@ -31,6 +31,7 @@ namespace TRSS
         {
 
             Destroy(gameObject);
+            cHouse.houses.Remove(gameObject);
 
         }
 

@@ -11,7 +11,8 @@ namespace TRSS
 
         GameObject[][] gObjs;
 
-        GameObject[] houses;
+        public List<GameObject> houses = new List<GameObject>();
+        public bool curHouse = false;
 
         public GameObject house;
         int maxHouseCount;
@@ -30,7 +31,6 @@ namespace TRSS
         {
             int rand;
             int index = 0;
-            houses = new GameObject[maxHouseCount];
             for (int x = 0; x < gObjs.Length; x++) {
 
                 for (int y = 0; y < gObjs[x].Length; y++) {
@@ -43,7 +43,7 @@ namespace TRSS
                             if(index != maxHouseCount)
                             {
                                 Debugger.Print("House Created");
-                                houses[index] = (GameObject)Instantiate(house, new Vector3((x * 10) - 70, 1.97f, (y * 10) - 45), Quaternion.identity);
+                                houses.Add((GameObject)Instantiate(house, new Vector3((x * 10) - 70, 1.97f, (y * 10) - 45), Quaternion.identity));
                                 index++;
                             }
                         }
@@ -62,12 +62,14 @@ namespace TRSS
 
         public void SelectNewDelivery()
         {
-
-            if (houses.Length != 0) {
-                int randomHouse = Random.Range(0, maxHouseCount);
+            Debug.Log("here 1");
+            if (houses.Count != 0) {
+                int randomHouse = Random.Range(0, houses.Count);
+                Debug.Log("here 2");
                 while (houses[randomHouse] == null)
                 {
-                    randomHouse = Random.Range(0, maxHouseCount);
+                    Debug.Log("here 3");
+                    randomHouse = Random.Range(0, houses.Count);
                 }
                 this.currentHouse = randomHouse;
                 Debugger.Print("New House Set");
@@ -81,17 +83,16 @@ namespace TRSS
 
             if (aManager != null & gObjs == null && aManager.arena != null) {
 
-                houses = new GameObject[maxHouseCount];
-
                 gObjs = aManager.arena;
-                this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
+                this.maxHouseCount = 2;// aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
 
             }
 
-            if(houses[currentHouse] == null && houses.Length > 0 && houses != null)
+            if(curHouse == false && houses.Count > 0 && houses != null)
             {
+                Debug.Log("here 4");
                 SelectNewDelivery();
             }
         }
