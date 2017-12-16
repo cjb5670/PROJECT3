@@ -63,15 +63,13 @@ namespace TRSS
 
         public void SelectNewDelivery()
         {
-            Debug.Log("here 1");
             if (houses.Count != 0) {
                 int randomHouse = Random.Range(0, houses.Count);
-                Debug.Log("here 2");
                 while (houses[randomHouse] == null)
                 {
-                    Debug.Log("here 3");
                     randomHouse = Random.Range(0, houses.Count);
                 }
+                curHouse = true;
                 this.currentHouse = randomHouse;
                 Debugger.Print("New House Set");
                 houses[randomHouse].GetComponent<MoveHouse>().SetActiveHouse();
@@ -97,7 +95,6 @@ namespace TRSS
 
             if(curHouse == false && houses.Count > 0 && houses != null)
             {
-                Debug.Log("here 4");
                 SelectNewDelivery();
             }
         }
