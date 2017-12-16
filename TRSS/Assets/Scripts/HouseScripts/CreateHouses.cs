@@ -87,13 +87,13 @@ namespace TRSS
             if (aManager != null & gObjs == null && aManager.arena != null) {
 
                 gObjs = aManager.arena;
-                this.maxHouseCount = aManager.grid_x * aManager.grid_y / 2;
+                this.maxHouseCount = 2;// aManager.grid_x * aManager.grid_y / 2;
                 Debug.Log(gObjs);
                 Populate();
 
             }
 
-            if(curHouse == false && houses.Count > 0 && houses != null)
+            if(curHouse == false)
             {
                 SelectNewDelivery();
             }
