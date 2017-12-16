@@ -622,7 +622,7 @@ MonoBehaviour:
   BK_L: {fileID: 146672498499179694}
   BK_R: {fileID: 146362370021203176}
   car_rb: {fileID: 54652759894314050}
-  MAX_SPEED: 20
+  MAX_SPEED: 15
 --- !u!114 &114365570477088342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  mailtruck_health: 100
+  mailtruck_health: 200
 --- !u!146 &146047211056186254
 WheelCollider:
   m_ObjectHideFlags: 1
