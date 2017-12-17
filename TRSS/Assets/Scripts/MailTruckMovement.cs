@@ -145,10 +145,14 @@ public class MailTruckMovement : TRSS.Input.ControllerInput {
         if (!this.isBraking)
         {
             this.ApplyForwardTorque(this.ForwardForce);
+            GameObject.Find("BrakeLightL").GetComponent<Light>().enabled = false;
+            GameObject.Find("BrakeLightR").GetComponent<Light>().enabled = false;
         }
         else
         {
             this.ApplyBrake();
+            GameObject.Find("BrakeLightL").GetComponent<Light>().enabled = true;
+            GameObject.Find("BrakeLightR").GetComponent<Light>().enabled = true;
         }
         
         // float forwardForce = speedForce * Input.GetAxis("Vertical");
