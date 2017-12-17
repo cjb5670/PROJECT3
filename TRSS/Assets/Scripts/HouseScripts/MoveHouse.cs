@@ -14,9 +14,7 @@ namespace TRSS
         public TimerUpdate timer;
 
         public ArenaManager aManager;
-        public CreateHouses cHouse;
-
-        
+        public CreateHouses cHouse;       
 
         // Use this for initialization
         void Start()
