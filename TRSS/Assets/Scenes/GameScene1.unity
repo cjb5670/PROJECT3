@@ -1397,7 +1397,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1308046995}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 1181114322}
@@ -1418,7 +1418,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1308046995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 568, y: 266.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1424152813}
@@ -1574,7 +1574,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1424152811}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 650, z: 0}
+  m_LocalPosition: {x: 0, y: 433.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 971956909}
@@ -5395,13 +5395,15 @@ MonoBehaviour:
     Controls:
 
 
-    Move Forward  W
+    Move Forward - Right Joystick Up / Right Trigger
+
+    Move Backward - Right Joystick Down
 
 
-    Turn   A/D
+    Turn - Left Joystick Left/Right
 
 
-    Move Backward S'
+    Brake - Left Trigger'
 --- !u!222 &2064210089
 CanvasRenderer:
   m_ObjectHideFlags: 0

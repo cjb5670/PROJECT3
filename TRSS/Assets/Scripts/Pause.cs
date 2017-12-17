@@ -14,9 +14,14 @@ public class Pause : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(Input.GetKeyDown("escape"))
+        if(Input.GetButtonDown("Pause"))
         {
             TogglePauseMenu();
+        }
+        else if(Input.GetButtonDown("B") && ui.GetComponent<Canvas>().enabled)
+        {
+            ui.GetComponent<Canvas>().enabled = false;
+            Time.timeScale = 1;
         }
 	}
 
