@@ -33,6 +33,11 @@ public class LoadScene : MonoBehaviour {
 		
 	}
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 	public void LoadMainMenuFromCredits()
 	{
 		Debug.Log("Enter");
@@ -51,7 +56,7 @@ public class LoadScene : MonoBehaviour {
 
 	public void LoadStartGame()
 	{
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(5);
 	}
 
 	public void LoadCredits()

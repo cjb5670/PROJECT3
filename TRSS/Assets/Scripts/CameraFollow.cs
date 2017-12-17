@@ -17,12 +17,20 @@ public class CameraFollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		// sets thisPosition to the location of the target + height
-		thisPosition.x = target.transform.position.x;
-		thisPosition.y = height;
-		thisPosition.z = target.transform.position.z;
+        if(target != null)
+        {
+            // sets thisPosition to the location of the target + height
+            thisPosition.x = target.transform.position.x;
+            thisPosition.y = height;
+            thisPosition.z = target.transform.position.z;
 
-		// sets the actual position of the camera to stored value
-		gameObject.transform.position = thisPosition;
+            // sets the actual position of the camera to stored value
+            gameObject.transform.position = thisPosition;
+        }
 	}
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
+    }
 }
