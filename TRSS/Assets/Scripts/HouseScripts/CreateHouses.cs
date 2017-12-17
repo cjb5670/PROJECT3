@@ -76,7 +76,7 @@ namespace TRSS
             }
             else
             {
-                SceneManager.LoadScene(6);
+                SceneManager.LoadScene(4);
             }
         }
 
