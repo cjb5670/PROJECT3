@@ -35,14 +35,18 @@ public class LoadScene : MonoBehaviour {
 
 	public void LoadMainMenuFromCredits()
 	{
+		Debug.Log("Enter");
 		mainMenu.SetFloat("Condition", 2);
 		creditsMenu.SetFloat("Condition", 2);
+		Debug.Log("Exit");
 	}
 
 	public void LoadMainMenuFromControls()
 	{
+		Debug.Log("Enter");
 		mainMenu.SetFloat("Condition", 2);
 		controlsMenu.SetFloat("Condition", 2);
+		Debug.Log("Exit");
 	}
 
 	public void LoadStartGame()
@@ -52,14 +56,18 @@ public class LoadScene : MonoBehaviour {
 
 	public void LoadCredits()
 	{
+		Debug.Log("Enter");
 		mainMenu.SetFloat("Condition", 1);
 		creditsMenu.SetFloat("Condition", 1);
+		Debug.Log("Exit");
 	}
 
 	public void LoadControls()
 	{
+		Debug.Log("Enter");
 		mainMenu.SetFloat("Condition", 1);
 		controlsMenu.SetFloat("Condition", 1);
+		Debug.Log("Exit");
 	}
 
 	public void LoadGameOver()
